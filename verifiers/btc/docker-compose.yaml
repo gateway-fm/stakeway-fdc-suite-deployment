@@ -23,7 +23,6 @@ x-django-management: &django-management
     indexer-server:
       condition: service_healthy
 
-
 services:
   database:
     container_name: verifier-btc-database
@@ -34,7 +33,7 @@ services:
       - 127.0.0.1:25431:5432
     restart: unless-stopped
     volumes:
-      - btc-indexer-database:/var/lib/postgresql/data
+      - ./btc-indexer-database:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       start_period: 60s
@@ -65,6 +64,10 @@ services:
 
   indexer-indexer:
     <<: *django-management
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+      - 8.8.4.4
     container_name: verifier-btc-index-blocks
     command: django-management block_indexing
 
@@ -75,5 +78,5 @@ services:
 
 volumes:
   btc-indexer-static:
-  btc-indexer-database:
+  # btc-indexer-database:
   btc-indexer-media:
