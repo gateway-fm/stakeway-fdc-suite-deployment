@@ -43,5 +43,5 @@ services:
       - 9503:3100
 
 
-volumes:
+# volumes:
   # xrp-indexer-database:
