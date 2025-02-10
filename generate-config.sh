@@ -28,7 +28,6 @@ db_folders=(
     "verifiers/btc/btc-indexer-database"
     "verifiers/doge/doge-indexer-database"
     "verifiers/xrp/xrp-indexer-database"
-    "evm-verifier/evm-indexer-database"
 )
 
 for db_folder in "${db_folders[@]}"; do
