@@ -13,7 +13,7 @@ services:
       - 51233:51233 # port_ws_public
       - 50051:50051 # port_grpc
     volumes:
-      - ripple-mainnet-data:/opt/ripple/.ripple/db
+      - ./ripple-mainnet-data:/opt/ripple/.ripple/db
       - ./rippled.conf:/opt/ripple/.ripple/rippled.conf
       - ./validators.txt:/opt/ripple/.ripple/validators.txt
     dns:
@@ -21,5 +21,5 @@ services:
       - 8.8.8.8
       - 8.8.4.4
 
-volumes:
-  ripple-mainnet-data:
+#volumes:
+#  ripple-mainnet-data:
