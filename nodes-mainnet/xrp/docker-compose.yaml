@@ -16,6 +16,10 @@ services:
       - ripple-mainnet-data:/opt/ripple/.ripple/db
       - ./rippled.conf:/opt/ripple/.ripple/rippled.conf
       - ./validators.txt:/opt/ripple/.ripple/validators.txt
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+      - 8.8.4.4
 
 volumes:
   ripple-mainnet-data:
