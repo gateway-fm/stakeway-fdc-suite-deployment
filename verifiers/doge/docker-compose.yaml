@@ -41,7 +41,7 @@ services:
       start_interval: 2s
 
   verifier:
-    image: ghcr.io/flare-foundation/verifier-indexer-api:v1.2.1
+    image: ghcr.io/flare-foundation/verifier-indexer-api:v1.2.2
     container_name: verifier-doge-verifier
     env_file:
       - verifier.env
