@@ -2,7 +2,7 @@
 
 Important changes and upgrade notes will be listed in this file. Always read this file before updating to a new version of this deployment repo.
 
-## \[[UNRELEASED]()\] - UNRELEASED
+## \[[v1.1.0](https://github.com/flare-foundation/fdc-suite-deployment/tree/v1.1.0)\] - 2025-11-12
 
 ### Update notes
 
