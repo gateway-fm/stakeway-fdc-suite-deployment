@@ -17,6 +17,8 @@ config_files=(
     "verifiers/xrp/config.toml"
     "verifiers/xrp/verifier.env"
     "evm-verifier/verifier.env"
+    "web2-verifier/mainnet/.env"
+    "web2-verifier/testnet/.env"
 )
 
 for config_file in "${config_files[@]}"; do

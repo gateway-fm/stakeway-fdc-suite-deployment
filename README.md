@@ -21,6 +21,8 @@ EVM based chains (Ethereum, Flare, Songbird) use a verifier api server that dire
 
 - EVM verifier - [flare-foundation/evm-verifier](https://github.com/flare-foundation/evm-verifier)
 
+- Web2 verifier [flare-foundation/verifier-indexer-api](https://github.com/flare-foundation/verifier-indexer-api)
+
 EVM verifier also requires FLR and SGB nodes, which are not part of this repository.
 
 The components listed here are all required to run a full FDC suite, but they are not required to be deployed from this repository. For example, if you already have a compatible Bitcoin rpc node, you can configure this repo to run everything else except for BTC node.
@@ -153,6 +155,7 @@ This script uses the values from `.env` and generates config files from `*.examp
 - verifiers/doge/
 - verifiers/xrp/
 - evm-verifier/
+- web2-verifier/
 
 ## Step 3 Running
 

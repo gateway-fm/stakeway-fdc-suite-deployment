@@ -1,0 +1,8 @@
+services:
+  verifier_test:
+    image: ghcr.io/flare-foundation/verifier-indexer-api:main
+    restart: unless-stopped
+    ports:
+      - "9504:3100"
+    env_file:
+      - .env
