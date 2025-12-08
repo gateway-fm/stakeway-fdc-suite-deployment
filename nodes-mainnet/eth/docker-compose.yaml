@@ -26,6 +26,7 @@ services:
     container_name: beacon
     command:
       - --mainnet
+      - --disable-last-epoch-targets
       - --config-file=/opt/ethereumd/data/beacon.yaml
     ports:
       - 3500:3500
