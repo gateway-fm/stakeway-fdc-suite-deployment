@@ -6,6 +6,7 @@ host = "database"
 port = 5432
 drop_table_at_start = false
 history_drop = 1296000
+history_drop_frequency = 86400
 
 [indexer]
 confirmations = 1

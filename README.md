@@ -167,3 +167,13 @@ Do this for all blockchain nodes you plan to run on the current server.
 cd into correct directory (example `verifiers/btc`) and run `docker compose up -d`.
 
 Do this for all verifiers you plan to run on the current server.
+
+## Step 4 Updates
+
+Before updating to a new version of this repository always read the [release notes](./RELEASES.md).
+
+If the release version you are updating to has no specific instructions, you can update the deployment by doing:
+
+- checkout the new version of this repository
+- generate new configs by running `./generate-config.sh` in the root of this repo
+- pull and start updated containers by running `docker compose up -d` for every component

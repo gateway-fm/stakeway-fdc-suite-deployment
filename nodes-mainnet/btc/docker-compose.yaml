@@ -2,7 +2,7 @@
 
 services:
   bitcoin-node:
-    image: flarefoundation/bitcoin:28.1
+    image: flarefoundation/bitcoin:30.0-dless
     container_name: node-mainnet-btc
     restart: unless-stopped
     ports:
