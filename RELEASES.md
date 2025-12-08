@@ -2,6 +2,12 @@
 
 Important changes and upgrade notes will be listed in this file. Always read this file before updating to a new version of this deployment repo.
 
+## \[[v1.1.1](https://github.com/flare-foundation/fdc-suite-deployment/tree/v1.1.1)\] - 2025-12-08
+
+### Changed
+
+- updated ripple node image to `2.6.2-nonroot`
+
 ## \[[v1.1.0](https://github.com/flare-foundation/fdc-suite-deployment/tree/v1.1.0)\] - 2025-11-12
 
 ### Update notes
