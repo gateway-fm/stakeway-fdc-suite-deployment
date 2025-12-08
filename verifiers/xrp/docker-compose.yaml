@@ -18,7 +18,7 @@ services:
 
   indexer:
     container_name: verifier-xrp-indexer
-    image: ghcr.io/flare-foundation/verifier-xrp-indexer:v1.0.1
+    image: ghcr.io/flare-foundation/verifier-xrp-indexer:v1.0.4
     dns:
       - 1.1.1.1
       - 8.8.8.8
