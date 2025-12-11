@@ -1,6 +1,6 @@
 services:
   verifier_test:
-    image: ghcr.io/flare-foundation/verifier-indexer-api:main
+    image: ghcr.io/flare-foundation/verifier-indexer-api:v1.3.0-rc.0
     restart: unless-stopped
     ports:
       - "9504:3100"
