@@ -20,6 +20,10 @@ services:
     volumes:
       - ./eth-mainnet-data:/opt/ethereumd/.ethereum
       - ./jwt.hex:/opt/ethereumd/.ethereum/jwt.hex:ro
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+      - 8.8.4.4
 
   beacon:
     image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
@@ -34,6 +38,10 @@ services:
       - ./eth-mainnet-data:/opt/ethereumd/data
       - ./beacon.yaml:/opt/ethereumd/data/beacon.yaml
       - ./jwt.hex:/opt/ethereumd/data/jwt.hex:ro
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+      - 8.8.4.4
 
 volumes:
   eth-mainnet-data:
