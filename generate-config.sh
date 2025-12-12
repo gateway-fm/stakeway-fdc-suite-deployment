@@ -24,4 +24,15 @@ for config_file in "${config_files[@]}"; do
     envsubst < "${config_file}.example" > "${config_file}"
 done
 
+db_folders=(
+    "verifiers/btc/btc-indexer-database"
+    "verifiers/doge/doge-indexer-database"
+    "verifiers/xrp/xrp-indexer-database"
+)
+
+for db_folder in "${db_folders[@]}"; do
+    echo "creating database folder ${db_folder}"
+    mkdir -p "${db_folder}"
+done
+
 echo "done"
