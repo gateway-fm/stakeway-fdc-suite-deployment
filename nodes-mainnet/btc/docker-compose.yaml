@@ -5,11 +5,12 @@ services:
     image: flarefoundation/bitcoin:30.0-dless
     container_name: node-mainnet-btc
     restart: unless-stopped
+    user: "1000"
     ports:
       - 8332:8332
       - 8333:8333
     volumes:
-      - bitcoin-mainnet-data:/opt/bitcoin/.bitcoin/db
+      - ./bitcoin-mainnet-data:/opt/bitcoin/.bitcoin/db
       - ./bitcoin.conf:/opt/bitcoin/.bitcoin/bitcoin.conf
 
 volumes:

@@ -18,8 +18,8 @@ services:
       - 8545:8545
       - 30303:30303
     volumes:
-      - eth-mainnet-data:/opt/ethereumd/.ethereum
-      - ./jwt.hex:/opt/ethereumd/.ethereum/jwt.hex
+      - ./eth-mainnet-data:/opt/ethereumd/.ethereum
+      - ./jwt.hex:/opt/ethereumd/.ethereum/jwt.hex:ro
 
   beacon:
     image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
@@ -31,9 +31,9 @@ services:
       - 3500:3500
       - 12000:12000
     volumes:
-      - eth-mainnet-data:/opt/ethereumd/data
+      - ./eth-mainnet-data:/opt/ethereumd/data
       - ./beacon.yaml:/opt/ethereumd/data/beacon.yaml
-      - ./jwt.hex:/opt/ethereumd/data/jwt.hex
+      - ./jwt.hex:/opt/ethereumd/data/jwt.hex:ro
 
 volumes:
   eth-mainnet-data:
