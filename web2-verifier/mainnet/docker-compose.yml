@@ -1,8 +1,0 @@
-services:
-  verifier_ignite:
-    image: ghcr.io/flare-foundation/verifier-indexer-api:v1.3.0
-    restart: unless-stopped
-    ports:
-      - "9504:3100"
-    env_file:
-      - .env
