@@ -2,6 +2,16 @@
 
 Important changes and upgrade notes will be listed in this file. Always read this file before updating to a new version of this deployment repo.
 
+## \[[v1.2.0](https://github.com/flare-foundation/fdc-suite-deployment/tree/v1.2.0)\] - 2025-12-17
+
+### Changed
+
+- added web2 verifier
+
+### Update notes
+
+This release adds new `WEB2_` variables to `.env.example`. Copy them to your `.env` file and populate them. Then run `generate-config.sh` and start web2-verifier with `docker-compose up -d`.
+
 ## \[[v1.1.1](https://github.com/flare-foundation/fdc-suite-deployment/tree/v1.1.1)\] - 2025-12-08
 
 ### Changed
