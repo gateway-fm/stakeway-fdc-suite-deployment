@@ -21,6 +21,8 @@ EVM based chains (Ethereum, Flare, Songbird) use a verifier api server that dire
 
 - EVM verifier - [flare-foundation/evm-verifier](https://github.com/flare-foundation/evm-verifier)
 
+- Web2 verifier [flare-foundation/verifier-indexer-api](https://github.com/flare-foundation/verifier-indexer-api)
+
 EVM verifier also requires FLR and SGB nodes, which are not part of this repository.
 
 The components listed here are all required to run a full FDC suite, but they are not required to be deployed from this repository. For example, if you already have a compatible Bitcoin rpc node, you can configure this repo to run everything else except for BTC node.
@@ -42,6 +44,24 @@ The minimal hardware requirements for a complete `mainnet` configuration are:
 - MEMORY: 64 GB
 
 If you don't want to deploy everything on a single server, separate components can be deployed on different servers. In that case the requirements for a single server can be lower.
+
+### Web2 Verifier
+
+It is strongly recommended to deploy the Web2 verifier to a standalone server as under heavy load it might impact the performance of other components. Hardware recommendations:
+
+- CPU: 4 cores @ 2.2GHz
+- DISK: n/a
+- MEMORY: 8 GB
+
+Alternatively, it could be run on the same machine with resource restrictions added to the Docker container:
+```yaml
+services:
+  verifier_web2:
+    ...
+    cpus: 4 # Should be less than 50% of available cpus
+    mem_limit: 2048m
+    ...
+```
 
 ## Software Requirements
 
@@ -76,7 +96,7 @@ docker build -t <image-tag> .
 
 replace image tag with the tag that is used in `docker-compose.yaml` files that use this image or modify docker-compose files to use your image tag.
 
-## Step 2 Configuration
+## Step 2: Configuration
 
 ### 2.1 Configuring blockchain nodes
 
@@ -153,8 +173,9 @@ This script uses the values from `.env` and generates config files from `*.examp
 - verifiers/doge/
 - verifiers/xrp/
 - evm-verifier/
+- web2-verifier/
 
-## Step 3 Running
+## Step 3: Running
 
 ### 3.1 Starting blockchain nodes
 
@@ -168,7 +189,7 @@ cd into correct directory (example `verifiers/btc`) and run `docker compose up -
 
 Do this for all verifiers you plan to run on the current server.
 
-## Step 4 Updates
+## Step 4: Updates
 
 Before updating to a new version of this repository always read the [release notes](./RELEASES.md).
 
