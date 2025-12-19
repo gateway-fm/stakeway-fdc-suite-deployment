@@ -7,8 +7,8 @@ services:
     restart: unless-stopped
     user: "1000"
     ports:
-      - 8332:8332
-      - 8333:8333
+      - 10.75.123.150:8332:8332 # only bind the port to server internal IP
+      - 10.75.123.150:8333:8333 # only bind the port to server internal IP
     volumes:
       - ./bitcoin-mainnet-data:/opt/bitcoin/.bitcoin/db
       - ./bitcoin.conf:/opt/bitcoin/.bitcoin/bitcoin.conf
