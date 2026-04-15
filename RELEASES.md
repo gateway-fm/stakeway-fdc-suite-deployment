@@ -2,6 +2,29 @@
 
 Important changes and upgrade notes will be listed in this file. Always read this file before updating to a new version of this deployment repo.
 
+## \[[v1.2.4-rc.0](https://github.com/flare-foundation/fdc-suite-deployment/tree/v1.2.4-rc.0)\] - 2026-04-15
+
+### Changed
+
+- updated xrp indexer to `v2.0.0-rc.0`
+- updated xrp verifier to `v1.5.0-rc.2`
+- updated PostgreSQL version to 18
+
+### Update notes
+
+This release requires reindexing of XRP verifier database data. DOGE and BTC also require a migration or reindex.
+
+- `XRP` must be fully reindexed because `verifier-xrp-indexer v2.0.0` changes the database schema.
+- `BTC`, `DOGE`, and `XRP` are now using PostgreSQL 18, so you must either migrate the existing database or remove the database volume and reindex.
+
+To reduce downtime, it is recommended to prepare a parallel deployment first and switch the FDC client to it during the reindex.
+
+For each affected verifier:
+1. Stop the old deployment with `docker compose down`.
+2. Migrate the database or remove the old database volume. (for example `docker volume rm verifier-btc_btc-indexer-database`)
+3. Run `./generate-config.sh`.
+4. Start the new version with `docker compose up -d`.
+
 ## \[[v1.2.3](https://github.com/flare-foundation/fdc-suite-deployment/tree/v1.2.3)\] - 2026-03-25
 
 ### Changed
