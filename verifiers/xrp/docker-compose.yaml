@@ -18,7 +18,7 @@ services:
 
   indexer:
     container_name: verifier-xrp-indexer
-    image: ghcr.io/flare-foundation/verifier-xrp-indexer:v1.0.4@sha256:4b3366ddb8a53e06886a34d0ab75e95822bde240760336d162a03c5616efde6f
+    image: ghcr.io/flare-foundation/verifier-xrp-indexer:v2.0.0-rc.0@sha256:2c6940e2d90be458605a4d9aab665577d9a5bad15acd5ffbea15493da3dd01a0
     depends_on:
       database:
         condition: service_healthy
@@ -27,7 +27,7 @@ services:
       - ./config.toml:/app/config.toml
 
   verifier:
-    image: ghcr.io/flare-foundation/verifier-indexer-api:v1.2.2@sha256:e8a94dd88276c0c06f44af561d9e3f06a42c405409c1002811015993cde377ca
+    image: ghcr.io/flare-foundation/verifier-indexer-api:v1.5.0-rc.2@sha256:c52c407c80649065b2d82638e2a480595c2cc082f3911f7d2f4d7502738c916a
     container_name: verifier-xrp-verifier
     env_file:
       - verifier.env
