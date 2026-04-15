@@ -3,14 +3,14 @@ name: verifier-xrp
 services:
   database:
     container_name: verifier-xrp-database
-    image: postgres:16@sha256:468e1f126ca5af849799cda06ac9b03d8090aae9fa5163408b3e8da44fad0702
+    image: postgres:18@sha256:52e6ffd11fddd081ae63880b635b2a61c14008c17fc98cdc7ce5472265516dd0
     env_file:
       - database.env
     ports:
       - 127.0.0.1:25433:5432
     restart: unless-stopped
     volumes:
-      - xrp-indexer-database:/var/lib/postgresql/data
+      - xrp-indexer-database:/var/lib/postgresql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       start_period: 60s
