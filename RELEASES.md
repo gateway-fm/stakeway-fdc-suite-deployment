@@ -2,12 +2,12 @@
 
 Important changes and upgrade notes will be listed in this file. Always read this file before updating to a new version of this deployment repo.
 
-## \[[v1.2.4-rc.0](https://github.com/flare-foundation/fdc-suite-deployment/tree/v1.2.4-rc.0)\] - 2026-04-15
+## \[[v1.2.4-rc.1](https://github.com/flare-foundation/fdc-suite-deployment/tree/v1.2.4-rc.1)\] - 2026-04-17
 
 ### Changed
 
-- updated xrp indexer to `v2.0.0-rc.0`
-- updated xrp verifier to `v1.5.0-rc.2`
+- updated xrp indexer to `v2.0.0`
+- updated xrp verifier to `v1.5.0`
 - updated PostgreSQL version to 18
 
 ### Update notes
