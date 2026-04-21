@@ -6,6 +6,14 @@ services:
       - 8.8.4.4
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    networks:
+      - default
+      - xrp-node-2
   verifier:
     extra_hosts:
       - "host.docker.internal:host-gateway"
+
+networks:
+  xrp-node-2:
+    external: true
+    name: xrp-2_default
