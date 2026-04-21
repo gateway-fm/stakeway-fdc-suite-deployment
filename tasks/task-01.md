@@ -240,3 +240,55 @@ From v1.2.0 (current) to v1.2.4:
 2. `0dc771a` — STW: Add xrp-2_default network to XRP verifier override
 3. `d4429f8` — STW: Add user: 1000 to node overrides for bind mount permissions
 4. `310c82e` — STW: Add DNS servers to DOGE node override
+5. `8f1c6c7` — STW: Update task-01.md with deployment verification results
+6. `f6597ab` — STW: Revert BTC/XRP/EVM/Web2 to production ports and names for cutover
+
+---
+
+## Cutover Log (2026-04-21)
+
+Cutover of all services except DOGE to production ports/names from the -2 deployment directory.
+DOGE remains on -2 offset ports (node still syncing from genesis).
+
+### Pre-cutover steps
+1. Committed compose files with production ports/names to `stakeway-fork-2` (DOGE excluded)
+2. Pulled latest on server
+3. Updated `COMPOSE_PROJECT_NAME` in node `.env` files: `btc`, `xrp`, `evm-verifier`, `web2-verifier`
+4. Updated root `.env`: `BTC_NODE_URL=http://10.75.123.150:8332`, `XRP_NODE_URL=http://node-mainnet-xrp:51234`
+5. Ran `./generate-config.sh` to regenerate verifier configs with production URLs
+
+### Cutover execution (one-by-one, nodes first)
+
+| Step | Action | Result |
+|---|---|---|
+| 1 | Stop old BTC node (-1) | `docker compose down` in -1/nodes-mainnet/btc |
+| 2 | Stop -2 BTC node, remove container | Had to manually `docker stop/rm node-mainnet-btc-2` (different project name) |
+| 3 | Start new BTC node on production ports | `node-mainnet-btc` on `10.75.123.150:8332-8333`. Lock file error from shared data dir — resolved with restart. |
+| 4 | Stop old XRP node (-1) | `docker compose down` in -1/nodes-mainnet/xrp |
+| 5 | Stop -2 XRP node, copy volume data | Copied `xrp-2_ripple-mainnet-data` → `xrp_ripple-mainnet-data` (new project name = new volume name) |
+| 6 | Start new XRP node on production ports | `node-mainnet-xrp` on `5005,6006,50051,51233-51235` |
+| 7 | Stop old BTC verifier (-1) | `docker compose down` removed all 5 containers |
+| 8 | Stop -2 BTC verifier, copy DB volume | Copied `verifier-btc-2_btc-indexer-database` → `verifier-btc_btc-indexer-database` |
+| 9 | Start new BTC verifier on production ports | All 5 containers up: `25431, 9501, 8401` |
+| 10 | Stop old XRP verifier (-1) | `docker compose down` removed all 3 containers |
+| 11 | Stop -2 XRP verifier, copy DB volume | Copied `verifier-xrp-2_xrp-indexer-database` → `verifier-xrp_xrp-indexer-database` |
+| 12 | Start new XRP verifier on production ports | All 3 containers up: `25433, 9503`. Indexer: "up to date" |
+| 13 | Stop old EVM verifier, remove -2 | Started new `evm-verifier` on `:9800` |
+| 14 | Stop old Web2 verifier, remove -2 | Started new `web2-verifier` on `:9801` |
+
+### Post-cutover issues
+1. **BTC indexer connection refused**: `host.docker.internal:8332` didn't work because BTC node binds to `10.75.123.150`, not `0.0.0.0`. Fixed by changing `BTC_NODE_URL` to `http://10.75.123.150:8332` and regenerating configs.
+2. **BTC indexer waiting**: Node at block ~636K, start_block is 871,200. Will begin indexing once node catches up. Expected.
+3. **Volume migration required**: Changing `COMPOSE_PROJECT_NAME` from `btc-2` to `btc` changes the volume name. Required copying data between named volumes for XRP and BTC verifier databases.
+
+### Services still on -2 (DOGE — pending node sync)
+
+| Container | Status | Port |
+|---|---|---|
+| node-mainnet-doge (-1) | Up 6 days | 22555 (production) |
+| node-mainnet-doge-2 | Up 3 hours, syncing | 32555 (-2 offset) |
+| verifier-doge-* (-1) | Up 6 days | 25432, 9502, 8402 (production) |
+| verifier-doge-*-2 | Up 3 hours | 35432, 19502, 18402 (-2 offset) |
+
+DOGE cutover will happen when the -2 DOGE node reaches block 5,469,000 and the indexer can start.
+
