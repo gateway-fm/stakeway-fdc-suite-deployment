@@ -1,5 +1,6 @@
 services:
   ripple-node:
+    user: "1000"
     volumes:
       - ripple-mainnet-data:/opt/ripple/.ripple/db
       - ./rippled.local.conf:/opt/ripple/.ripple/rippled.conf:ro

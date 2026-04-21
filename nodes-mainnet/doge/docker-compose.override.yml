@@ -1,5 +1,6 @@
 services:
   dogecoin-node:
+    user: "1000"
     volumes:
       - ./dogecoin-mainnet-data:/opt/dogecoin/.dogecoin/db
       - ./dogecoin.local.conf:/opt/dogecoin/.dogecoin/dogecoin.conf:ro
