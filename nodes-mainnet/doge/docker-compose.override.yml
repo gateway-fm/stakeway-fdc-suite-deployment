@@ -1,6 +1,10 @@
 services:
   dogecoin-node:
     user: "1000"
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+      - 8.8.4.4
     volumes:
       - ./dogecoin-mainnet-data:/opt/dogecoin/.dogecoin/db
       - ./dogecoin.local.conf:/opt/dogecoin/.dogecoin/dogecoin.conf:ro
