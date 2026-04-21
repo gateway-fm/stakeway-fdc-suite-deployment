@@ -8,12 +8,12 @@ services:
       - "host.docker.internal:host-gateway"
     networks:
       - default
-      - xrp-node-2
+      - xrp-node
   verifier:
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
 networks:
-  xrp-node-2:
+  xrp-node:
     external: true
-    name: xrp-2_default
+    name: xrp_default
