@@ -1,0 +1,11 @@
+services:
+  indexer:
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+      - 8.8.4.4
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  verifier:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

@@ -1,0 +1,10 @@
+services:
+  ripple-node:
+    volumes:
+      - ripple-mainnet-data:/opt/ripple/.ripple/db
+      - ./rippled.local.conf:/opt/ripple/.ripple/rippled.conf:ro
+      - ./validators.txt:/opt/ripple/.ripple/validators.txt
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+      - 8.8.4.4

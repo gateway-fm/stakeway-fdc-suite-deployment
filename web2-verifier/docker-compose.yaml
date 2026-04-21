@@ -1,9 +1,9 @@
 services:
   web2-verifier:
     image: ghcr.io/flare-foundation/verifier-indexer-api:v1.4.0@sha256:7298fd1ac0fa1783324c17b7cf5b0445a8d12180b4f176789ca24aa1b0052250
-    container_name: web2-verifier
+    container_name: web2-verifier-2
     restart: unless-stopped
     ports:
-      - 9801:3100
+      - 19801:3100
     env_file:
       - verifier.env

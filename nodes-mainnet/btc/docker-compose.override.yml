@@ -1,0 +1,5 @@
+services:
+  bitcoin-node:
+    volumes:
+      - ./bitcoin-mainnet-data:/opt/bitcoin/.bitcoin/db
+      - ./bitcoin.local.conf:/opt/bitcoin/.bitcoin/bitcoin.conf:ro

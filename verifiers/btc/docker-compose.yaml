@@ -1,4 +1,4 @@
-name: verifier-btc
+name: verifier-btc-2
 
 x-django: &django
   image: ghcr.io/flare-foundation/verifier-utxo-indexer:v1.0.2@sha256:42b2f5b1af89cf28e437a04f7d7bbbd8dd8afc708c29f56102551eb9c717b909
@@ -26,12 +26,12 @@ x-django-management: &django-management
 
 services:
   database:
-    container_name: verifier-btc-database
+    container_name: verifier-btc-database-2
     image: postgres:18@sha256:52e6ffd11fddd081ae63880b635b2a61c14008c17fc98cdc7ce5472265516dd0
     env_file:
       - database.env
     ports:
-      - 127.0.0.1:25431:5432
+      - 127.0.0.1:35431:5432
     restart: unless-stopped
     volumes:
       - btc-indexer-database:/var/lib/postgresql
@@ -42,7 +42,7 @@ services:
 
   verifier:
     image: ghcr.io/flare-foundation/verifier-indexer-api:v1.2.2@sha256:e8a94dd88276c0c06f44af561d9e3f06a42c405409c1002811015993cde377ca
-    container_name: verifier-btc-verifier
+    container_name: verifier-btc-verifier-2
     env_file:
       - verifier.env
     depends_on:
@@ -50,13 +50,13 @@ services:
         condition: service_healthy
     restart: unless-stopped
     ports:
-      - 9501:3100
+      - 19501:3100
 
   indexer-server:
     <<: *django
-    container_name: verifier-btc-server
+    container_name: verifier-btc-server-2
     ports:
-      - 127.0.0.1:8401:8400
+      - 127.0.0.1:18401:8400
     healthcheck:
       test: ["CMD", "curl", "-s", "--fail", "-o", "/dev/null", "http://127.0.0.1:8400/metrics"]
       interval: 60s
@@ -65,12 +65,12 @@ services:
 
   indexer-indexer:
     <<: *django-management
-    container_name: verifier-btc-index-blocks
+    container_name: verifier-btc-index-blocks-2
     command: django-management block_indexing
 
   indexer-prune:
     <<: *django-management
-    container_name: verifier-btc-prune-blocks
+    container_name: verifier-btc-prune-blocks-2
     command: django-management block_pruning
 
 volumes:

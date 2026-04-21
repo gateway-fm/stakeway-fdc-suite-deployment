@@ -1,0 +1,4 @@
+services:
+  evm-verifier:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

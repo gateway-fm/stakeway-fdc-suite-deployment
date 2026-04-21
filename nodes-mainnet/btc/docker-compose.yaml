@@ -3,11 +3,11 @@
 services:
   bitcoin-node:
     image: ghcr.io/flare-foundation/connected-chains-docker/bitcoind:v30.0@sha256:597de43e5354326449af50b2d60484344ad6208ed3f81be74373cdd7f83d3e6b
-    container_name: node-mainnet-btc
+    container_name: node-mainnet-btc-2
     restart: unless-stopped
     ports:
-      - 8332:8332
-      - 8333:8333
+      - 10.75.123.150:18332:8332
+      - 10.75.123.150:18333:8333
     volumes:
       - bitcoin-mainnet-data:/opt/bitcoin/.bitcoin/db
       - ./bitcoin.conf:/opt/bitcoin/.bitcoin/bitcoin.conf

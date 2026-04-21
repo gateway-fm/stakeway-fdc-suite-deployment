@@ -1,0 +1,12 @@
+services:
+  dogecoin-node:
+    volumes:
+      - ./dogecoin-mainnet-data:/opt/dogecoin/.dogecoin/db
+      - ./dogecoin.local.conf:/opt/dogecoin/.dogecoin/dogecoin.conf:ro
+    networks:
+      - default
+      - gateway-shared
+
+networks:
+  gateway-shared:
+    external: true

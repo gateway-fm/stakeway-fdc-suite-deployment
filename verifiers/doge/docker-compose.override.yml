@@ -1,0 +1,33 @@
+services:
+  database:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - default
+      - gateway-shared
+  verifier:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - default
+      - gateway-shared
+  indexer-server:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - default
+      - gateway-shared
+  indexer-indexer:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - default
+      - gateway-shared
+  indexer-prune:
+    networks:
+      - default
+      - gateway-shared
+
+networks:
+  gateway-shared:
+    external: true

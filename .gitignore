@@ -27,3 +27,7 @@ status.json
 # local configs
 # .indexer.remote.dev.read.env
 # .indexer.remote.dev.write.env
+
+# Stakeway: server-only config files with credentials
+*.local.conf
+*.local.yaml
