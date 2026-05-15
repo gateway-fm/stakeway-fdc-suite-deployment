@@ -2,7 +2,7 @@
 
 services:
   ripple-node:
-    image: ghcr.io/flare-foundation/connected-chains-docker/rippled:3.1.2@sha256:baeea4cd55087ae0b2400357d5bf3f241762bff59ff37f19085e273ab148af3c
+    image: ghcr.io/flare-foundation/connected-chains-docker/rippled:3.1.3@sha256:9202f2d9f3b6bd577a874f08722a5f54c8bd2a8ef989da14a12e3977a7caf413
     container_name: node-mainnet-xrp
     restart: unless-stopped
     ports:
