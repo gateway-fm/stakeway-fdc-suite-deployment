@@ -1,7 +1,7 @@
 name: verifier-doge
 
 x-django: &django
-  image: ghcr.io/flare-foundation/verifier-utxo-indexer:v1.0.2@sha256:42b2f5b1af89cf28e437a04f7d7bbbd8dd8afc708c29f56102551eb9c717b909
+  image: ghcr.io/flare-foundation/verifier-utxo-indexer:v1.1.0@sha256:410dac33f9168e589694ef62da2010f4f0705e9e3d59a2638ad0dcd9b7797557
   env_file:
     - indexer.env
   environment:
@@ -17,6 +17,7 @@ x-django: &django
 
 x-django-management: &django-management
   <<: *django
+  stop_signal: SIGINT
   depends_on:
     database:
       condition: service_healthy
@@ -41,7 +42,7 @@ services:
       start_interval: 2s
 
   verifier:
-    image: ghcr.io/flare-foundation/verifier-indexer-api:v1.2.2@sha256:e8a94dd88276c0c06f44af561d9e3f06a42c405409c1002811015993cde377ca
+    image: ghcr.io/flare-foundation/verifier-indexer-api:v1.6.0@sha256:d6c9c95da19ac4c34b35be985dbbac89ff31e9c52f8bdf06d09b92bafe1ac987
     container_name: verifier-doge-verifier
     env_file:
       - verifier.env
@@ -56,9 +57,9 @@ services:
     <<: *django
     container_name: verifier-doge-server
     ports:
-      - 127.0.0.1:8402:8400
+      - 127.0.0.1:8402:8000
     healthcheck:
-      test: ["CMD", "curl", "-s", "--fail", "-o", "/dev/null", "http://127.0.0.1:8400/metrics"]
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://127.0.0.1:8000/metrics', timeout=5).raise_for_status()"]
       interval: 60s
       start_period: 60s
       start_interval: 2s
