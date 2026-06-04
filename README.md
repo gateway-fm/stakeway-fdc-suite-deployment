@@ -19,7 +19,7 @@ EVM based chains (Ethereum, Flare, Songbird) use a verifier api server that dire
     - DOGE - [flare-foundation/verifier-utxo-indexer](https://github.com/flare-foundation/verifier-utxo-indexer) and [flare-foundation/verifier-indexer-api](https://github.com/flare-foundation/verifier-indexer-api)
     - XRP - [flare-foundation/verifier-xrp-indexer](https://github.com/flare-foundation/verifier-xrp-indexer) and [flare-foundation/verifier-indexer-api](https://github.com/flare-foundation/verifier-indexer-api)
 
-- EVM verifier - [flare-foundation/evm-verifier](https://github.com/flare-foundation/evm-verifier)
+- EVM verifier - [flare-foundation/verifier-indexer-api](https://github.com/flare-foundation/verifier-indexer-api)
 
 - Web2 verifier [flare-foundation/verifier-indexer-api](https://github.com/flare-foundation/verifier-indexer-api)
 
@@ -162,6 +162,8 @@ Set `TESTNET` to `true` if you are running verifiers for testnets.
 Set `VERIFIER_API_KEYS` to api keys that will have access to verifier api servers. One or more comma separated keys can be configured. You will likely need at least one key for FDC client that will call verifier api servers.
 
 `*_DB_PASSWORD` variables are used internally for the indexer database. If you don't know why you probably don't need to access the database, so set those passwords to a random string.
+
+EVM verifiers run one verifier API instance per EVM chain. `ETH_NODE_URL`, `FLR_NODE_URL`, and `SGB_NODE_URL` configure the RPC endpoints.
 
 ### 2.3 Generating configs for indexers and verifiers
 

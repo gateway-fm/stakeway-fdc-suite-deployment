@@ -2,6 +2,37 @@
 
 Important changes and upgrade notes will be listed in this file. Always read this file before updating to a new version of this deployment repo.
 
+## \[[v1.3.0](https://github.com/flare-foundation/fdc-suite-deployment/tree/v1.3.0)\] - 2026-06-04
+
+### Changed
+
+- changed EVM verifier deployment to run `verifier-indexer-api:v1.6.0` as separate ETH, FLR, and SGB verifier instances
+- updated BTC and DOGE indexers to `verifier-utxo-indexer:v1.1.0`
+- updated BTC, DOGE, and XRP verifiers to `verifier-indexer-api:v1.6.0`
+- updated XRP indexer to `verifier-xrp-indexer:v2.1.0`
+- updated web2 verifier to `verifier-indexer-api:v1.6.0`
+
+### Update notes
+
+The EVM verifier changed from one shared `evm-verifier` service on port `9800` to three `verifier-indexer-api` services: ETH on port `9701`, FLR on port `9702` and SGB on port `9703`.
+
+Because EVM verifiers are now on separate ports, you will most likely need to update your FDC client verifier URLs. For example:
+
+```env
+ETH_EVMTRANSACTION_URL=https://<host>:9701/verifier/eth/EVMTransaction/verifyFDC
+FLR_EVMTRANSACTION_URL=https://<host>:9702/verifier/flr/EVMTransaction/verifyFDC
+SGB_EVMTRANSACTION_URL=https://<host>:9703/verifier/sgb/EVMTransaction/verifyFDC
+```
+
+Recommended EVM verifier upgrade procedure:
+
+1. In `evm-verifier/`, stop the old deployment with `docker compose down` before updating the deployment repo.
+2. Pull or update this repository.
+3. Run `./generate-config.sh` from the repository root.
+4. In `evm-verifier/`, run `docker compose up -d` to start the new EVM verifier services.
+
+Other updated verifiers can be updated by running `docker compose up -d` like always.
+
 ## \[[v1.2.5](https://github.com/flare-foundation/fdc-suite-deployment/tree/v1.2.5)\] - 2026-05-15
 
 ### Changed
@@ -100,4 +131,3 @@ Finally, start the new version of the node with `docker compose up -d`.
 - updated ripple node to `2.6.1-dless`
 - updated xrp indexer to `v1.0.4` to fix history drop issue
 - added `history_drop_frequency` to xrp indexer config
-
