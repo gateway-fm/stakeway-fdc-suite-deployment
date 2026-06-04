@@ -17,6 +17,9 @@ config_files=(
     "verifiers/xrp/config.toml"
     "verifiers/xrp/verifier.env"
     "evm-verifier/verifier.env"
+    "evm-verifier/verifier-eth.env"
+    "evm-verifier/verifier-flr.env"
+    "evm-verifier/verifier-sgb.env"
     "web2-verifier/verifier.env"
 )
 

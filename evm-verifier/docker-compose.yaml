@@ -1,9 +1,37 @@
+x-verifier: &verifier
+  image: ghcr.io/flare-foundation/verifier-indexer-api:v1.6.0@sha256:d6c9c95da19ac4c34b35be985dbbac89ff31e9c52f8bdf06d09b92bafe1ac987
+  restart: unless-stopped
+
 services:
-  evm-verifier:
-    image: ghcr.io/flare-foundation/evm-verifier:v1.0.3@sha256:f3669154865f54daf41329f3774024c26a088a90658ee8e42ee91ed5c307691e
-    container_name: evm-verifier
-    restart: unless-stopped
-    ports:
-      - 9800:9800
+  verifier_eth:
+    <<: *verifier
+    environment:
+      VERIFIER_TYPE: eth
+      APP_BASE_PATH: /verifier/eth
     env_file:
       - verifier.env
+      - verifier-eth.env
+    ports:
+      - "9701:9700"
+
+  verifier_flr:
+    <<: *verifier
+    environment:
+      VERIFIER_TYPE: flr
+      APP_BASE_PATH: /verifier/flr
+    env_file:
+      - verifier.env
+      - verifier-flr.env
+    ports:
+      - "9702:9700"
+
+  verifier_sgb:
+    <<: *verifier
+    environment:
+      VERIFIER_TYPE: sgb
+      APP_BASE_PATH: /verifier/sgb
+    env_file:
+      - verifier.env
+      - verifier-sgb.env
+    ports:
+      - "9703:9700"
