@@ -2,6 +2,12 @@
 
 Important changes and upgrade notes will be listed in this file. Always read this file before updating to a new version of this deployment repo.
 
+## \[[v1.3.1](https://github.com/flare-foundation/fdc-suite-deployment/tree/v1.3.1)\] - 2026-06-05
+
+### Changed
+
+- updated BTC, DOGE, XRP, EVM and web2 verifiers to `verifier-indexer-api:v1.6.1`
+
 ## \[[v1.3.0](https://github.com/flare-foundation/fdc-suite-deployment/tree/v1.3.0)\] - 2026-06-04
 
 ### Changed

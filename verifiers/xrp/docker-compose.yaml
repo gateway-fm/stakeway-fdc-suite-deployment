@@ -27,7 +27,7 @@ services:
       - ./config.toml:/app/config.toml
 
   verifier:
-    image: ghcr.io/flare-foundation/verifier-indexer-api:v1.6.0@sha256:d6c9c95da19ac4c34b35be985dbbac89ff31e9c52f8bdf06d09b92bafe1ac987
+    image: ghcr.io/flare-foundation/verifier-indexer-api:v1.6.1@sha256:5bd9717dad96aca2f119eb95304857f8a0bfa1b4d196ef1aaa0889cc490dcc50
     container_name: verifier-xrp-verifier
     env_file:
       - verifier.env
