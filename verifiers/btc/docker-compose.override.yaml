@@ -1,0 +1,41 @@
+services:
+  database:
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+      - 8.8.4.4
+  verifier:
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+      - 8.8.4.4
+  indexer-server:
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+      - 8.8.4.4
+  indexer-indexer:
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+      - 8.8.4.4
+
+volumes:
+  btc-indexer-static:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /data/stakeway-fdc-suite-deployment/verifiers/btc/data/static
+  btc-indexer-media:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /data/stakeway-fdc-suite-deployment/verifiers/btc/data/media
+  btc-indexer-database:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /data/stakeway-fdc-suite-deployment/verifiers/btc/data/database
