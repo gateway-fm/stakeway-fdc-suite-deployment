@@ -1,0 +1,14 @@
+services:
+  indexer:
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+      - 8.8.4.4
+
+volumes:
+  xrp-indexer-database:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /data/stakeway-fdc-suite-deployment/verifiers/xrp/data/database
