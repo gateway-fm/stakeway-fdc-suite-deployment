@@ -1,7 +1,7 @@
 name: verifier-btc
 
 x-django: &django
-  image: ghcr.io/flare-foundation/verifier-utxo-indexer:v1.1.0@sha256:410dac33f9168e589694ef62da2010f4f0705e9e3d59a2638ad0dcd9b7797557
+  image: ghcr.io/flare-foundation/verifier-utxo-indexer:v1.1.1@sha256:466c6936aadf6538d6d1f676b909e2bc979d17f49bce52cbadd37f0d9526712a
   env_file:
     - indexer.env
   environment:
