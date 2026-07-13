@@ -2,6 +2,16 @@
 
 Important changes and upgrade notes will be listed in this file. Always read this file before updating to a new version of this deployment repo.
 
+## \[[v1.3.3](https://github.com/flare-foundation/fdc-suite-deployment/tree/v1.3.3)\] - 2026-07-13
+
+### Changed
+
+- updated xrpl node to `3.2.0`
+
+### Update notes
+
+In the mainnet xrpl node config, the peering port has changed from `51235` to `2459`. If you have any firewall rules set up for incoming peering connections, update them.
+
 ## \[[v1.3.2](https://github.com/flare-foundation/fdc-suite-deployment/tree/v1.3.2)\] - 2026-06-11
 
 ### Changed
