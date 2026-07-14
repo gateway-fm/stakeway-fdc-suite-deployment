@@ -2,20 +2,17 @@
 
 services:
   ripple-node:
-    image: ghcr.io/flare-foundation/connected-chains-docker/rippled:3.1.3@sha256:9202f2d9f3b6bd577a874f08722a5f54c8bd2a8ef989da14a12e3977a7caf413
+    image: ghcr.io/flare-foundation/connected-chains-docker/xrpl:3.2.0@sha256:a64363903662e6b70c9e1241b12b1589bfea1903f1dc9fc958468cef9c6931da
     container_name: node-testnet-xrp
     restart: unless-stopped
     ports:
-      - 15005:5005   # port_rpc_admin_local
-      - 16006:6006   # port_ws_admin_local
-      - 11235:51235 # port_peer
+      - 51235:51235 # port_peer
       - 11234:51234 # port_rpc_public
       - 11233:51233 # port_ws_public
-      - 10051:50051 # port_grpc
     volumes:
-      - ripple-testnet-data:/opt/ripple/.ripple/db
-      - ./rippled.conf:/opt/ripple/.ripple/rippled.conf
-      - ./validators.txt:/opt/ripple/.ripple/validators.txt
+      - ripple-testnet-data:/opt/xrpld/.xrpld/db
+      - ./xrpld.cfg:/opt/xrpld/.xrpld/xrpld.cfg
+      - ./validators.txt:/opt/xrpld/.xrpld/validators.txt
 
 volumes:
   ripple-testnet-data:
